@@ -11,8 +11,6 @@ class BinarizerIbis:
         def fn(table: Table):
             exprs = [ibis.case().when(table[col] > self.threshold, 1).else_(0).end().name(col)
                      for col in table.columns]
-            table = table.select(*exprs)
-
-            return table
+            return table.select(*exprs)
 
         return fn

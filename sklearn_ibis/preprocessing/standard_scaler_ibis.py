@@ -1,6 +1,6 @@
 from sklearn.preprocessing import StandardScaler
 from ibis.expr.types import Table
-
+from sklearn_ibis.functions import subtract, division
 
 class StandardScalerIbis():
     def __init__(self, scaler: StandardScaler):
@@ -12,12 +12,10 @@ class StandardScalerIbis():
     def to_ibis(self):
         def fn(table: Table):
             if self.with_mean:
-                exprs = [table[col] - col_mean for col, col_mean in zip(table.columns, list(self.mean))]
-                table = table.select(*exprs)
+                table = subtract(table, self.mean)
 
             if self.with_std:
-                exprs = [table[col] / col_std for col, col_std in zip(table.columns, list(self.std))]
-                table = table.select(*exprs)
+                table = division(table, self.std)
 
             return table
 

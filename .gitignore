@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 
 .idea
+local/
+Release
+substrait_example.c

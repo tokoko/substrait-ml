@@ -39,6 +39,6 @@ def ibis_and_back(ibis_wrapper, sklearn_impl, args, frame=None):
             print(df_sklearn[0])
             print("!!!-----------------------!!!")
             print(df_ibis.values[0])
-            # print(df_sklearn - df_ibis.values)
+            print(df_sklearn[0] - df_ibis.values[0])
 
         assert np.allclose(df_ibis.values, df_sklearn)
