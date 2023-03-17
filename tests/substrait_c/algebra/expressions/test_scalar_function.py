@@ -31,4 +31,4 @@ def test_add():
         )
     ]
 
-    assert ScalarFunction(func, extensions=extend_with_add).to_c().render() == '(100 + 200)'
+    assert ScalarFunction(func, root_struct=None, extensions=extend_with_add).to_c(None).render() == '(100 + 200)'

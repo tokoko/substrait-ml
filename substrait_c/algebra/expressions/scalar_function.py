@@ -1,6 +1,6 @@
 from ibis_substrait.proto.substrait.ibis.algebra_pb2 import Expression as ExpressionProto
 from ibis_substrait.proto.substrait.ibis.extensions.extensions_pb2 import SimpleExtensionDeclaration
-from ibis_substrait.proto.substrait.ibis.type_pb2 import Type, NamedStruct
+from ibis_substrait.proto.substrait.ibis.type_pb2 import NamedStruct
 from typing import List
 from cgen.variable import Variable
 import random
@@ -53,4 +53,6 @@ class ScalarFunction:
             return arg_expressions[0] > arg_expressions[1]
         elif self.function_name == 'lt':
             return arg_expressions[0] < arg_expressions[1]
+        elif self.function_name == 'and':
+            return arg_expressions[0] & arg_expressions[1]
         raise Exception(f'Unknown function {self.function_name}')

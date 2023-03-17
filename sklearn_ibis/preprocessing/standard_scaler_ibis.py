@@ -1,23 +1,20 @@
 from sklearn.preprocessing import StandardScaler
 from ibis.expr.types import Table
-from sklearn_ibis.functions import subtract, division
+from ibis_ml.standard_scaler import StandardScaler as _StandardScaler
 
-class StandardScalerIbis():
+
+class StandardScalerIbis:
     def __init__(self, scaler: StandardScaler):
-        self.with_mean = scaler.with_mean
-        self.with_std = scaler.with_std
-        self.mean = scaler.mean_
-        self.std = scaler.scale_
+        self.impl = _StandardScaler(
+            scaler.with_mean,
+            scaler.with_std,
+            scaler.mean_,
+            scaler.scale_
+        )
 
     def to_ibis(self):
         def fn(table: Table):
-            if self.with_mean:
-                table = subtract(table, self.mean)
-
-            if self.with_std:
-                table = division(table, self.std)
-
-            return table
+            return self.impl.transform(table)
 
         return fn
 

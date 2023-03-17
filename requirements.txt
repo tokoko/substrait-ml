@@ -1,5 +1,5 @@
-ibis-framework
-ibis-substrait
-scikit-learn
+ibis-framework==4.1.0
+ibis-substrait==2.24.0
+scikit-learn==1.2.2
 pytest
-cffi
+cffi==1.15.1

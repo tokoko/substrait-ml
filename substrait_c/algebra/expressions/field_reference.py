@@ -36,7 +36,10 @@ class FieldReference:
         return self.col_type
 
     def to_c(self, base_field_reference: Variable):
-        return base_field_reference.field(self._name)
+        if base_field_reference is not None:
+            return base_field_reference.field(self._name)
+        else:
+            return Variable(None, self._name)
 
     def __repr__(self):
         return f'FieldReference ({self._name}, {self.col_type.WhichOneof("kind")})'

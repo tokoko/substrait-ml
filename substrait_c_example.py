@@ -5,6 +5,13 @@ from ibis import literal
 
 t = ibis.table([("Col1", "int64"), ("Col2", "int64")],"t",)
 t = t.select(t['Col2'], literal(10, type='int64').name('Lit10'), literal(2).name('Anon1'))
+
+t= t.select(
+    ibis.case().when(t['Col2'] < t['Lit10'], literal(2))\
+        .when(t['Col2'] > t['Lit10'], literal(1))\
+        .else_(literal(-1)).end().name('NamedSwitch')
+)
+
 # t = t.select((t['Col2'] / t['Anon1']).name('Col3'))
 # t = t.select(t['Col2'] + t['Anon1'])
 

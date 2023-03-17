@@ -53,7 +53,7 @@ def subtract(table: Table, vec):
     return table.select(*exprs)
 
 
-def division(table: Table, vec):
+def divide(table: Table, vec):
     exprs = []
 
     for col, const in zip(table.columns, vec):

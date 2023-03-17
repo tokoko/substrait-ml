@@ -7,19 +7,22 @@ class Expression:
         return self.content
 
     def __add__(self, other):
-        return Expression(f'({self.content} + {other.content})')
+        return Expression(f'({self.render()} + {other.render()})')
 
     def __sub__(self, other):
-        return Expression(f'({self.content} - {other.content})')
+        return Expression(f'({self.render()} - {other.render()})')
 
     def __mul__(self, other):
-        return Expression(f'({self.content} * {other.content})')
+        return Expression(f'({self.render()} * {other.render()})')
 
     def __truediv__(self, other):
-        return Expression(f'({self.content} / {other.content})')
+        return Expression(f'({self.render()} / {other.render()})')
 
     def __lt__(self, other):
-        return Expression(f'({self.content} < {other.content})')
+        return Expression(f'({self.render()} < {other.render()})')
 
     def __gt__(self, other):
-        return Expression(f'({self.content} > {other.content})')
+        return Expression(f'({self.render()} > {other.render()})')
+
+    def __and__(self, other):
+        return Expression(f'({self.render()} & {other.render()})')
